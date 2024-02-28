@@ -133,6 +133,11 @@
 
         // After the map loads, add the GeoJSON source and layer for existing points
         map.on("load", function () {
+            map.loadImage('img/husky_icon.png', function (error, image) {
+                if (error) throw error;
+                map.addImage('custom-marker', image);
+            });
+
             map.addSource('places', {
                 'type': 'geojson',
                 'data': geojson
@@ -140,11 +145,11 @@
 
             map.addLayer({
                 'id': 'placesLayer',
-                'type': 'circle',
+                'type': 'symbol',
                 'source': 'places',
-                'paint': {
-                    'circle-radius': 6,
-                    'circle-color': '#B42222'
+                'layout': {
+                    'icon-image': 'custom-marker',
+                    'icon-size': 0.1
                 }
             });
         });
@@ -160,7 +165,7 @@
 
             popup = new maplibregl.Popup()
                 .setLngLat(coordinates)
-                .setHTML("<p><b>" + contributor + "</b> <i>said:</i> " + content + "Year of Graduation: " + yearofgrad + "</p>")
+                .setHTML("<p><b>" + contributor + "</b> <i>said:</i> " + content + "<br>" + "Year of Graduation: " + yearofgrad + "</p>")
                 .addTo(map);
         });
 
