@@ -22,19 +22,19 @@ exports.getRecord = async(req, res) => {//
 //  * @param {status} res - confirmation that comment has been added into the review table
 //  */
 exports.addRecord = async(req, res) => {
-    let {contributor, content, lat, lng} = req.body;
+    let {contributor, content, year, lat, lng} = req.body;
     // let currTime = new Date().toISOString();
-    console.log('INSERT INTO "tblRecord"(contributor, content, lat, lng) VALUES ($1, $2, $3, $4)',
-        [contributor, content, lat, lng]);
+    console.log('INSERT INTO "tblRecord"(contributor, content, year, lat, lng) VALUES ($1, $2, $3, $4)',
+        [contributor, content, year, lat, lng]);
     let {recordRows} = await db.query(
-        'INSERT INTO "tblRecord"(contributor, content, lat, lng) VALUES ($1, $2, $3, $4)',
-        [contributor, content, lat, lng]
+        'INSERT INTO "tblRecord"(contributor, content, year, lat, lng) VALUES ($1, $2, $3, $4)',
+        [contributor, content, year, lat, lng]
     )
 
     res.status(200).send({
         message: "record added into record table!",
         body: {
-            record: {contributor, content, lat, lng}
+            record: {contributor, content, year, lat, lng}
         }
     })
 };
