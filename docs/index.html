@@ -52,7 +52,7 @@
             margin-bottom: 10px;
         }
 
-        #year{
+        #yearofgrad{
             width: 100%;
             height: 20px;
             margin-bottom: 10px;
@@ -201,7 +201,7 @@
             let newRecord = new URLSearchParams();
             newRecord.append('contributor', contributor);
             newRecord.append('content', content);
-            newRecord.append('year', yearofgrad);
+            newRecord.append('yearofgrad', yearofgrad);
             newRecord.append('lng', lngLat.lng);
             newRecord.append('lat', lngLat.lat);
 
@@ -225,7 +225,7 @@
                     'properties': {
                         'contributor': contributor,
                         'content': content,
-                        'year': yearofgrad,
+                        'yearofgrad': yearofgrad,
                     },
                     'geometry': {
                         'type': 'Point',
