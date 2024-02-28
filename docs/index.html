@@ -133,7 +133,7 @@
 
         // After the map loads, add the GeoJSON source and layer for existing points
         map.on("load", function () {
-            map.loadImage('img/husky_icon.png', function (error, image) {
+            map.loadImage('https://sportslogohistory.com/wp-content/uploads/2021/12/washington_huskies_2016-pres_a.png', function (error, image) {
                 if (error) throw error;
                 map.addImage('custom-marker', image);
             });
