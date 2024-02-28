@@ -121,6 +121,7 @@
                     'properties': {
                         'contributor': data.rows[i].contributor,
                         'content': data.rows[i].content,
+                        'yearofgrad': data.rows[i].yearofgrad,
                     },
                     'geometry': {
                         'type': 'Point',
@@ -155,11 +156,11 @@
             var coordinates = e.features[0].geometry.coordinates;
             var content = e.features[0].properties.content;
             var contributor = e.features[0].properties.contributor;
-            var year = e.features[0].properties.year;
+            var yearofgrad = e.features[0].properties.yearofgrad;
 
             popup = new maplibregl.Popup()
                 .setLngLat(coordinates)
-                .setHTML("<p><b>" + contributor + "</b> <i>said:</i> " + content + "Year of Graduation: " + year + "</p>")
+                .setHTML("<p><b>" + contributor + "</b> <i>said:</i> " + content + "Year of Graduation: " + yearofgrad + "</p>")
                 .addTo(map);
         });
 
@@ -176,7 +177,7 @@
             }
 
             // Create the HTML content for the contribution popup
-            const popupContent = '<div id="popup"><input type="text" id="name" placeholder="Input your name here..."><input type="text" id="content" placeholder="Input your message here..."><input type="text" id="year" placeholder="Optional: Year of graduation"><button id="submit">submit</button></div>';
+            const popupContent = '<div id="popup"><input type="text" id="name" placeholder="Input your name here..."><input type="text" id="content" placeholder="Input your message here..."><input type="text" id="yearofgrad" placeholder="Optional: Year of graduation"><button id="submit">submit</button></div>';
 
             // Create a new popup and set its content
             popup = new maplibregl.Popup({ closeOnClick: false })
@@ -193,14 +194,14 @@
         async function submitNewRecord() {
             let contributor = document.getElementById('name').value;
             let content = document.getElementById('content').value;
-            let year = document.getElementById('year').value;
+            let yearofgrad = document.getElementById('yearofgrad').value;
             let lngLat = popup.getLngLat();
 
             // Create a new URLSearchParams object and append the data to it
             let newRecord = new URLSearchParams();
             newRecord.append('contributor', contributor);
             newRecord.append('content', content);
-            newRecord.append('year', year);
+            newRecord.append('year', yearofgrad);
             newRecord.append('lng', lngLat.lng);
             newRecord.append('lat', lngLat.lat);
 
@@ -224,7 +225,7 @@
                     'properties': {
                         'contributor': contributor,
                         'content': content,
-                        'year': year,
+                        'year': yearofgrad,
                     },
                     'geometry': {
                         'type': 'Point',
