@@ -95,14 +95,14 @@
         let map = new maplibregl.Map({
             container: 'map', // container id
             style: 'https://api.maptiler.com/maps/streets-v2/style.json?key=Cusoe5zmfmn26glFoeoe', // style URL
-            center: [-122.3321, 47.6062], // starting position [lng, lat]
+            center: [ -122.306070,47.656225], // starting position [lng, lat]
             // pitch: 45, // pitch in degrees
-            zoom: 12 // starting zoom
+            zoom: 13 // starting zoom
         });
 
         // Fetch existing records when the window is loaded
         window.addEventListener("load", async function () {
-            let response = await fetch('https://pmap-28a9a9408e2b.herokuapp.com/api/get-record', {
+            let response = await fetch('https://participatorymap-4832ac3959da.herokuapp.com/api/get-record', {
                 method: 'GET'
             });
 
@@ -203,7 +203,7 @@
 
             try {
                 // Send the POST request to add the new record
-                await fetch('https://pmap-28a9a9408e2b.herokuapp.com/api/add-record', settings);
+                await fetch('https://participatorymap-4832ac3959da.herokuapp.com/api/add-record', settings);
             } catch (err) {
                 // Handle any errors that occur during the request
                 console.error(err);
